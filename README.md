@@ -17,10 +17,10 @@ Esta kata consiste en programar la unidad de control del robot mars rover. A dif
 
 Vamos a suponer que disponemos ya de un interfaz definido para comunicarnos con los motores del robot:
 
-- left(time)
-- right(time)
-- fordward(time)
-- backward(time)
+- left(time) -> activa el motor izquierdo del robot durante el tiempo indicado
+- right(time) -> activa el motor derecho del robot durante el tiempo indicado
+- fordward(time) -> activa los dos motores, izquierdo y derecho, haciendo avanzar al robot durante el tiempo indicado
+- backward(time) -> activa los dos motores, izquierdo y drecho, en dirección inversa haciando que el robot retroceda durante el tiempo indicado
 
 Los cuatro comandos básicos de movimiento con este esquema implican:
 
@@ -28,6 +28,8 @@ Los cuatro comandos básicos de movimiento con este esquema implican:
 - b -> mover 1s hacia atras
 - l -> mover 1s el motor de la derecha
 - r -> mover 1s el motor de la izquierda
+
+nota: Para que nuestro robot gire a la derecha necesitamos activar el motor izquierdo, y para que gire a la derecho activamos el izquierdo.
 
 Con estas modificaciones vamos a implementar lo siguiente:
 
@@ -42,7 +44,7 @@ Con estas modificaciones vamos a implementar lo siguiente:
 	- lista de comandos “BBBFFFRRR”
 		- backward(3)
 		- fordward(3)
-		- righ(3)
+		- left(3)
 
 - El mars rover ha ido a marte en busca de vida no solo de paseo!, vamos a contar con un nuevo comando para chequear la existencia de vida “c”, cuando llegue este comando el robot usará su dispositivo de detección de vida, en caso de encontrarla usará su dispositivo de localización y cuando termine de procesar todos los comandos de movimientos nos entregará una lista con las posiciones donde encontro vida. Todavía no conocemos el interfaz con estos dispositivos porque los ingenieros del robot hacen waterfall y además son de hablar poco, pero esto no es ningún problema, nosotros hacemos TDD!.
 
