@@ -16,15 +16,16 @@ class GradesEvaluator {
 
 class CalculateAverageGradeSpec extends Specification {
   
- 	def "calculate average grade"() {
-      given: 
-        def gradesRepositoryStub = Mock(GradesRepository) {
-          grades('student') >> [OOP: 8,algorithms: 6,FP: 6,databases: 10]
-        }
+	def "calculate average grade"() {
+      		given: 
+        		def gradesRepositoryStub = Mock(GradesRepository) {
+          			grades('student') >> [OOP: 8,algorithms: 6,FP: 6,databases: 10]
+        		}
 
-        def gradesEvaluator = new GradesEvaluator(gradesRepository: gradesRepositoryStub)
+        		def gradesEvaluator = new GradesEvaluator(gradesRepository: gradesRepositoryStub)
 
-  		expect: gradesEvaluator.averageGrade('student') == 7.5
-  }	
+  		expect: 
+  			gradesEvaluator.averageGrade('student') == 7.5
+  	}	
 
 }
