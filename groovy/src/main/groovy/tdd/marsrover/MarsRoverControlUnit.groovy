@@ -5,7 +5,7 @@ interface Engine {
     def left(time)
     def right(time)
     def fordward(time)
-    def backward(time)
+    def backward(time);
     
 } 
 
@@ -14,7 +14,7 @@ class MarsRoverControlUnit {
 	def engine
 
 	def move(commands) {
-		engine.fordward(1)
+		throw new UnsupportedOperationException("Not yet implemented")
 	}
 
 }
