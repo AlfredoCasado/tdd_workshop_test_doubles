@@ -1,0 +1,53 @@
+import java.awt.Desktop
+
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '2.0.4'
+
+    compile 'org.codehaus.groovy:groovy-all:2.0.4'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'cglib:cglib-nodep:2.2.2'
+}
+
+project.ext {
+  testFailed = ''
+}
+
+test {
+    testLogging.showStandardStreams = true
+
+    afterTest { desc, result -> 
+        if (result.toString() == 'FAILURE') {
+            project.testFailed = "${desc.className}"
+        }
+    }
+}
+
+gradle.taskGraph.afterTask { task, taskState ->
+    if (testTaskFailed(task)) {
+        openFailedTestReportInBrowser(task)
+    }
+}
+
+def openFailedTestReportInBrowser(task) {
+    if (Desktop.isDesktopSupported()) {
+        Desktop.desktop.browse(new File(task.testReportDir, "${project.testFailed}.html").toURI())
+    }
+}
+
+def testTaskFailed(task) {
+    task instanceof Test && !project.testFailed.isEmpty()
+}
+
+def processToExecute() {
+    if (!System.properties['proc']) { 
+        return "com.unience.model.processes.ExpireNotConfirmedAccounts" 
+    } else {
+        return "com.unience.model.processes." + System.properties['proc'] 
+    }
+}
