@@ -17,7 +17,7 @@ class GradesEvaluator {
 class CalculateAverageGradeSpec extends Specification {
   
 	def "calculate average grade"() {
-      		given: 
+		given: 
         		def gradesRepositoryStub = Mock(GradesRepository) {
           			grades('student') >> [OOP: 8,algorithms: 6,FP: 6,databases: 10]
         		}
