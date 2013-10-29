@@ -1,4 +1,4 @@
-tdd_workshop_test_doubles
+TDD workshop test doubles
 =========================
 
 Repositorio con "esqueletos" de proyectos para comenzar el taller de test doubles. 
@@ -43,7 +43,7 @@ Con estas modificaciones vamos a implementar lo siguiente:
 		- backward(3)
 		- fordward(3)
 
-- El mars rover ha ido a marte en busca de vida no solo de paseo!, vamos a contar con un nuevo comando para chequear la existencia de vida “c”, cuando llegue este comando el robot usará su dispositivo de detección de vida, en casa de encontrarla usará su dispositivo de localización y cuando termine de procesar todos los comandos de movimientos nos entregará una lista con las posiciones donde encontro vida. Todavía no conocemos el interfaz con estos dispositivos porque los ingenieros de robot hacen waterfall y además son de hablar poco, pero esto no es ningún problema, nosotros hacemos TDD.
+- El mars rover ha ido a marte en busca de vida no solo de paseo!, vamos a contar con un nuevo comando para chequear la existencia de vida “c”, cuando llegue este comando el robot usará su dispositivo de detección de vida, en casa de encontrarla usará su dispositivo de localización y cuando termine de procesar todos los comandos de movimientos nos entregará una lista con las posiciones donde encontro vida. Todavía no conocemos el interfaz con estos dispositivos porque los ingenieros del robot hacen waterfall y además son de hablar poco, pero esto no es ningún problema, nosotros hacemos TDD!.
 
 Nota: tener en cuenta el orden en el que hacemos las llamadas al motor!.
 
