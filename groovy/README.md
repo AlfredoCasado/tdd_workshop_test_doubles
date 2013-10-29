@@ -7,11 +7,11 @@ No es imprescindible pero como recomendación utilizar gvm para instalar gradle 
 
 Para ejecutar todos los test de un proyecto gradle simplemente: 
 
-	- "gradle test"
+	- gradle test
 
 Para ejecutar un sólo test:
 
-	- "gradle -Dtest.single=MarsRoverControlUnitSpec"
+	- gradle -Dtest.single=MarsRoverControlUnitSpec
 
 nota1: Como recomendación usar la opción --daemon para que deje una jvm arrancada en segundo plano, esto acelerá bastante la ejecución de los test.
 
