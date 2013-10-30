@@ -4,7 +4,7 @@ TDD workshop test doubles
 Repositorio con "esqueletos" de proyectos para comenzar el taller de test doubles. 
 También se incluyen algunos ejemplos mostrados en la presentación previa al taller.
 
-De momento se incluyen los siguientes esquelos:
+De momento se incluyen los siguientes esqueletos:
 
  - java: con mockito y jmock
  - groovy: con spock
