@@ -29,7 +29,7 @@ Los cuatro comandos básicos de movimiento con este esquema implican:
 - l -> mover 1s el motor de la derecha
 - r -> mover 1s el motor de la izquierda
 
-nota: Para que nuestro robot gire a la derecha necesitamos activar el motor izquierdo, y para que gire a la derecha activamos el izquierdo, si al reves jeje, como el timon de un barco.
+nota: Para que nuestro robot gire a la derecha necesitamos activar el motor izquierdo, y para que gire a la izquierda activamos el derecho, si al reves jeje, como el timon de un barco.
 
 Con estas modificaciones vamos a implementar lo siguiente:
 
