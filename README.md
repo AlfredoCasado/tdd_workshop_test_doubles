@@ -8,6 +8,7 @@ De momento se incluyen los siguientes esqueletos:
 
  - java: con mockito y jmock
  - groovy: con spock
+ - ruby: con rspec
  
 Enunciado de la kata:
 
