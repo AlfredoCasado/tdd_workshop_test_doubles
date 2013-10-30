@@ -1,0 +1,3 @@
+Este carpeta es para almacenar las distintas soluciones al problema a las que llegue cada cual.
+
+Dentro de esta carpeta crear una carpeta con vuestro nombre y dentro la solución, estaría bien algún readme o similar para explicar como ejecutar los test etc,etc. Podeís simplemente hacer un fork del repositorio y luego enviar un pull request, otra opción es simplemente mandarme un correo con vuestra solución y la subo yo al repositorio.
