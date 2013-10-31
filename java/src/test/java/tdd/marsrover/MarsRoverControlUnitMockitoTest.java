@@ -10,11 +10,14 @@ public class MarsRoverControlUnitMockitoTest {
     can_move_fordward_once() {
     
         Engine engineSpy = mock(Engine.class);
-        MarsRoverControlUnit marsRover = new MarsRoverControlUnit(engineSpy);
+   /*     MarsRoverControlUnit marsRover = new MarsRoverControlUnit(engineSpy);
         
+        marsRover.move("f");
+        marsRover.move("f");
+        marsRover.move("f");
         marsRover.move("f");
         
         verify(engineSpy).fordward(1);
-        
+     */   
     }
 }
