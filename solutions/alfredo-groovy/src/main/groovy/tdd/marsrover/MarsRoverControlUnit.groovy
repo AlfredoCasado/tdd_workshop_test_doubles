@@ -14,7 +14,7 @@ class MarsRoverControlUnit {
 	def engine
 
 	def move(commands) {
-		throw new UnsupportedOperationException("Not yet implemented")
+		engine.fordward(1)
 	}
 
 }
