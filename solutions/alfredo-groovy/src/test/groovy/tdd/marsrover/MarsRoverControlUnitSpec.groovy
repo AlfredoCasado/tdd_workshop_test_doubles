@@ -23,4 +23,9 @@ class MarsRoverControlUnitSpec extends Specification {
 			"r"			| "left"
 	}
 
+	def "can move fordward several times"() {
+		when: marsRover.move("ff")
+		then: 1 * engineSpy.fordward(2)
+	}
+
 }
