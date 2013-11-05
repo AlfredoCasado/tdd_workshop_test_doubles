@@ -15,7 +15,7 @@ class MarsRoverControlUnit {
 
 	def move(commands) {
 		if ( commands == "f") engine.fordward(1)
-		if ( commands == "r") engine.right(1)
+		else if ( commands == "l") engine.right(1)
 		else engine.backward(1)
 	}
 

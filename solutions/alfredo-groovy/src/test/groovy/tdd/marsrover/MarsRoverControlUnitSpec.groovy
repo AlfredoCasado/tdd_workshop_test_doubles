@@ -7,20 +7,19 @@ class MarsRoverControlUnitSpec extends Specification {
 	def engineSpy = Mock(Engine)
 	def marsRover = new MarsRoverControlUnit(engine: engineSpy)
 
+	@Unroll
+	def "can move in direction specified by command #command once"() {
+		when: marsRover.move(command)
+		then: 
+			1 * engineSpy."$method_expected_to_be_called_on_engine"(1)
+			0 * engineSpy._
 
-	def "can move fordward once"() {
-		when: marsRover.move("f")
-		then: 1 * engineSpy.fordward(1)
-	}
-
-	def "can move backward once"() {
-		when: marsRover.move("b")
-		then: 1 * engineSpy.backward(1)
-	}
-
-	def "can move left once"() {
-		when: marsRover.move("r")
-		then: 1 * engineSpy.right(1)
+		where:
+			command 	| method_expected_to_be_called_on_engine
+			
+			"f"			| "fordward"
+			"b"			| "backward"
+			"l"			| "right"
 	}
 
 }
