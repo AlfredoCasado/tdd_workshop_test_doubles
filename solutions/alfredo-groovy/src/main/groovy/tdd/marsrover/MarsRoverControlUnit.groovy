@@ -15,9 +15,9 @@ class MarsRoverControlUnit {
 
 	def actions = [
 		'f': {time -> engine.fordward(time)},
-		'b': {time -> engine.backward(1)},
-		'l': {time -> engine.right(1)},
-		'r': {time -> engine.left(1)}
+		'b': {time -> engine.backward(time)},
+		'l': {time -> engine.right(time)},
+		'r': {time -> engine.left(time)}
 	]
 
 	def move(commands) {
@@ -37,6 +37,8 @@ class MarsRoverControlUnit {
 		actions[last_command](time)
 
 	}
+
+
 
 	
 
