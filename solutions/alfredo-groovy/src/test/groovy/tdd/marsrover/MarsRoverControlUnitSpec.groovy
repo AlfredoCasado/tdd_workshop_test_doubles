@@ -20,6 +20,7 @@ class MarsRoverControlUnitSpec extends Specification {
 			"f"			| "fordward"
 			"b"			| "backward"
 			"l"			| "right"
+			"r"			| "left"
 	}
 
 }
