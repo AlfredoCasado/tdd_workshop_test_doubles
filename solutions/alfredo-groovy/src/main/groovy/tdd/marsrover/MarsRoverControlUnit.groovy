@@ -14,10 +14,10 @@ class MarsRoverControlUnit {
 	def engine
 
 	def actions = [
-		'f': {time -> engine.fordward(time)},
-		'b': {time -> engine.backward(time)},
-		'l': {time -> engine.right(time)},
-		'r': {time -> engine.left(time)}
+		'f': "fordward",
+		'b': "backward",
+		'l': "right",
+		'r': "left"
 	]
 
 	def move(commands) {
@@ -27,7 +27,8 @@ class MarsRoverControlUnit {
 
 		commands.each { command ->
 			if (command != last_command) {
-				actions[last_command](time)
+				def action createAction(actions[command], time)
+				action.call()
 				time = 0
 			} else {
 				time++
@@ -35,11 +36,12 @@ class MarsRoverControlUnit {
 		}
 
 		actions[last_command](time)
-
 	}
 
-
-
-	
+	private createCommand(movement, time) {
+		return {
+			engine."$movement"(time)
+		}
+	}
 
 }
