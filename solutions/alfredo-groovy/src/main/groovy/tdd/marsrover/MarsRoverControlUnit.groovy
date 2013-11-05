@@ -13,35 +13,43 @@ class MarsRoverControlUnit {
 
 	def engine
 
-	def actions = [
-		'f': "fordward",
-		'b': "backward",
-		'l': "right",
-		'r': "left"
-	]
-
 	def move(commands) {
+		def commandProcessor = new CommandProcessor(commands: commands)
+		commandProcessor.actions().each { actionToExcecuteOn ->
+			actionToExcecuteOn(engine)
+		}
+	}
 
+}
+
+class CommandProcessor {
+
+	def commands
+
+	def actions() {
+
+		def actions = []
 		def last_command = commands[0]
 		def time = 0
 
 		commands.each { command ->
 			if (command != last_command) {
-				def action createAction(actions[command], time)
-				action.call()
+				actions << createAction(last_command, time)
 				time = 0
-			} else {
-				time++
-			}
+			} 
+			
+			time++
 		}
 
-		actions[last_command](time)
+		actions << createAction(last_command, time)
 	}
 
-	private createCommand(movement, time) {
-		return {
-			engine."$movement"(time)
+	private createAction(command, time) {
+		switch(command) {
+			case 'f': return {engine -> engine.fordward(time)}
+			case 'b': return {engine -> engine.backward(time)} 
+			case 'l': return {engine -> engine.right(time)}
+			case 'r': return {engine -> engine.left(time)}	
 		}
 	}
-
 }
