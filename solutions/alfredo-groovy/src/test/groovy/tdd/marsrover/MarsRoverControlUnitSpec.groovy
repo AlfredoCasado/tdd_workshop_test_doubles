@@ -23,9 +23,20 @@ class MarsRoverControlUnitSpec extends Specification {
 			"r"			| "left"
 	}
 
-	def "can move fordward several times"() {
-		when: marsRover.move("ff")
-		then: 1 * engineSpy.fordward(2)
+	@Unroll
+	def "can move several times with command #command"() {
+		when: marsRover.move(command)
+		then: 
+			1 * engineSpy."$method_expected_to_be_called_on_engine"(2)
+			0 * engineSpy._
+
+		where:
+		command 		| method_expected_to_be_called_on_engine
+			
+		"ff"			| "fordward"
+		"bb"			| "backward"
+		"ll"			| "right"
+		"rr"			| "left"
 	}
 
 }
