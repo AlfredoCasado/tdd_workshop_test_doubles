@@ -18,4 +18,9 @@ class MarsRoverControlUnitSpec extends Specification {
 		then: 1 * engineSpy.backward(1)
 	}
 
+	def "can move left once"() {
+		when: marsRover.move("r")
+		then: 1 * engineSpy.right(1)
+	}
+
 }
