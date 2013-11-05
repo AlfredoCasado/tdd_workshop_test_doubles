@@ -13,11 +13,15 @@ class MarsRoverControlUnit {
 
 	def engine
 
+	def actions = [
+		"f": {engine.fordward(1)},
+		"b": {engine.backward(1)},
+		"l": {engine.right(1)},
+		"r": {engine.left(1)}
+	]
+
 	def move(commands) {
-		if ( commands == "f") engine.fordward(1)
-		else if ( commands == "l") engine.right(1)
-		else if ( commands == "r") engine.left(1)
-		else engine.backward(1)
+		actions[commands]()
 	}
 
 }
