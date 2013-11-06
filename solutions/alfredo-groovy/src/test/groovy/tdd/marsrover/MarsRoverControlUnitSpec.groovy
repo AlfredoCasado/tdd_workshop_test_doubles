@@ -45,4 +45,19 @@ class MarsRoverControlUnitSpec extends Specification {
 		then: 1 * engineSpy.right(1)
 	}	
 
+	def "can move fordward twice and then left twice"() {
+		when: marsRover.move("ffll")
+		then: 1 * engineSpy.fordward(2)
+		then: 1 * engineSpy.right(2)
+	}	
+
+	def "can move complex moves"() {
+		when: marsRover.move("fffllbbbrr")
+		then: 1 * engineSpy.fordward(3)
+		then: 1 * engineSpy.right(2)
+		then: 1 * engineSpy.backward(3)
+		then: 1 * engineSpy.left(2)
+	}	
+
+
 }
