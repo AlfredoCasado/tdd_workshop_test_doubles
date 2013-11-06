@@ -15,7 +15,8 @@ class MarsRoverControlUnit {
 
 	def move(commands) {
 		def commandProcessor = new CommandProcessor(commands: commands)
-		commandProcessor.actions().each { actionToExcecuteOn ->
+		
+		commandProcessor.forEachAction { actionToExcecuteOn ->
 			actionToExcecuteOn(engine)
 		}
 	}
@@ -26,22 +27,21 @@ class CommandProcessor {
 
 	def commands
 
-	def actions() {
+	def forEachAction(function) {
 
-		def actions = []
 		def last_command = commands[0]
 		def time = 0
 
 		commands.each { command ->
 			if (command != last_command) {
-				actions << createAction(last_command, time)
+				function createAction(last_command, time)
 				time = 0
 			} 
 			
 			time++
 		}
 
-		actions << createAction(last_command, time)
+		function createAction(last_command, time)
 	}
 
 	private createAction(command, time) {
