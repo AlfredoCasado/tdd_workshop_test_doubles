@@ -5,7 +5,7 @@ import spock.lang.*
 class MarsRoverControlUnitSpec extends Specification {
 
 	def engineSpy = Mock(Engine)
-	def marsRover = new MarsRoverControlUnit(engine: engineSpy)
+	def marsRover = MarsRoverControlUnit.createWith(engineSpy)
 
 	@Unroll
 	def "can move in direction specified by command #command once"() {

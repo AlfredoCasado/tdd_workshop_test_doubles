@@ -11,12 +11,19 @@ interface Engine {
 
 class MarsRoverControlUnit {
 
-	def commandProcessor = new CommandProcessor()
-	def engine
-
+	def static createWith(engine) {
+		new MarsRoverControlUnit(
+			commandProcessor: new CommandProcessor(
+				actionsFactory: new ActionsFactory(engine: engine)
+			)
+		)
+	}
+	
+	def commandProcessor
+	
 	def move(theCommands) {
 		commandProcessor.actionsToExecute(theCommands) { action ->
-			action.executeOn(engine)
+			action.execute()
 		}
 	}
 
@@ -24,7 +31,7 @@ class MarsRoverControlUnit {
 
 class CommandProcessor {
 
-	def actionsFactory = new ActionsFactory()
+	def actionsFactory
 
 	def actionsToExecute(commands, function) {
 
@@ -46,34 +53,22 @@ class CommandProcessor {
 }
 
 class ActionsFactory {
+
+	def engine
 	
 	def buildActionFor(command, time) {
 		switch(command) {
-			case 'f': return new MoveFordwardAction(time: time)
-			case 'b': return new MoveBackwardAction(time: time)
-			case 'l': return new MoveLeftAction(time: time)
-			case 'r': return new MoveRightAction(time: time)
+			case 'f': return new EngineMoveAction(engine: engine, time: time, movement: 'fordward')
+			case 'b': return new EngineMoveAction(engine: engine, time: time, movement: 'backward')
+			case 'l': return new EngineMoveAction(engine: engine, time: time, movement: 'right')
+			case 'r': return new EngineMoveAction(engine: engine, time: time, movement: 'left')
 		}
 	}
 
 }
 
-class MoveFordwardAction {
-	def time
-	def executeOn(engine) { engine.fordward(time) }
-}
-
-class MoveBackwardAction {
-	def time
-	def executeOn(engine) { engine.backward(time) }
-}
-
-class MoveLeftAction {
-	def time
-	def executeOn(engine) { engine.right(time) }
-}
-
-class MoveRightAction {
-	def time
-	def executeOn(engine) { engine.left(time) }
+class EngineMoveAction {
+	def time, movement, engine
+	
+	def execute() { engine."$movement"(time) }
 }
