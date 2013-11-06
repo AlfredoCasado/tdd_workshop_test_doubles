@@ -51,7 +51,7 @@ class CommandProcessor {
 
 class ActionsFactory {
 	
-	def createAction(command, time) {
+	def buildActionFor(command, time) {
 		switch(command) {
 			case 'f': return {engine -> engine.fordward(time)}
 			case 'b': return {engine -> engine.backward(time)} 
