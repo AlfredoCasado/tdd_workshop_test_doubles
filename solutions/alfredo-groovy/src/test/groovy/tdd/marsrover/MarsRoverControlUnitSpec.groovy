@@ -68,7 +68,7 @@ class MarsRoverControlUnitSpec extends Specification {
 			lifeDetectorStub.detect() >> true
 			positionSystemStub.currentPosition() >> position1 
 
-		when: life_form_positions = marsRover.move("c")
+		when: def life_form_positions = marsRover.move("c")
 		
 		then: life_form_positions == [position1]
 	}	

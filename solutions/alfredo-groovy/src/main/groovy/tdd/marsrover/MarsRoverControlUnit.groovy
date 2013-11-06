@@ -64,6 +64,7 @@ class ActionsFactory {
 			case 'b': return createEngineMovement('backward', time)
 			case 'l': return createEngineMovement('right', time)
 			case 'r': return createEngineMovement('left', time)
+			default: throw new RuntimeException("no action associated with command: $command")
 		}
 	}
 
