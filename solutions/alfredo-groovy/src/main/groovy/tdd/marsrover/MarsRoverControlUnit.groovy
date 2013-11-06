@@ -19,12 +19,14 @@ class MarsRoverControlUnit {
 		commandProcessor.forEachAction { actionToExcecuteOn ->
 			actionToExcecuteOn(engine)
 		}
+
 	}
 
 }
 
 class CommandProcessor {
 
+	def actionsFactory = new ActionsFactory()
 	def commands
 
 	def forEachAction(function) {
@@ -34,17 +36,22 @@ class CommandProcessor {
 
 		commands.each { command ->
 			if (command != last_command) {
-				function createAction(last_command, time)
+				function actionsFactory.buildActionFor(last_command, time)
 				time = 0
 			} 
 			
 			time++
 		}
 
-		function createAction(last_command, time)
+		function actionsFactory.buildActionFor(last_command, time)
 	}
 
-	private createAction(command, time) {
+	
+}
+
+class ActionsFactory {
+	
+	def createAction(command, time) {
 		switch(command) {
 			case 'f': return {engine -> engine.fordward(time)}
 			case 'b': return {engine -> engine.backward(time)} 
@@ -52,4 +59,5 @@ class CommandProcessor {
 			case 'r': return {engine -> engine.left(time)}	
 		}
 	}
+
 }
