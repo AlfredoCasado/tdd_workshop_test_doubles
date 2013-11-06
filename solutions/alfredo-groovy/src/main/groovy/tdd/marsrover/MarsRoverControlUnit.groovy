@@ -35,8 +35,7 @@ class CommandProcessor {
 
 	def actionsToExecute(commands, function) {
 
-		def last_command = commands[0]
-		def time = 0
+		def last_command = commands[0], time = 0
 
 		commands.each { command ->
 			if (command != last_command) {
