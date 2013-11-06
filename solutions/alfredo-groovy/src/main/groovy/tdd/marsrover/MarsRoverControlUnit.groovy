@@ -16,7 +16,7 @@ class MarsRoverControlUnit {
 
 	def move(theCommands) {
 		commandProcessor.actionsToExecute(theCommands) { action ->
-			action(engine)
+			action.executeOn(engine)
 		}
 	}
 
@@ -49,11 +49,31 @@ class ActionsFactory {
 	
 	def buildActionFor(command, time) {
 		switch(command) {
-			case 'f': return {engine -> engine.fordward(time)}
-			case 'b': return {engine -> engine.backward(time)} 
-			case 'l': return {engine -> engine.right(time)}
-			case 'r': return {engine -> engine.left(time)}	
+			case 'f': return new MoveFordwardAction(time: time)
+			case 'b': return new MoveBackwardAction(time: time)
+			case 'l': return new MoveLeftAction(time: time)
+			case 'r': return new MoveRightAction(time: time)
 		}
 	}
 
+}
+
+class MoveFordwardAction {
+	def time
+	def executeOn(engine) { engine.fordward(time) }
+}
+
+class MoveBackwardAction {
+	def time
+	def executeOn(engine) { engine.backward(time) }
+}
+
+class MoveLeftAction {
+	def time
+	def executeOn(engine) { engine.right(time) }
+}
+
+class MoveRightAction {
+	def time
+	def executeOn(engine) { engine.left(time) }
 }
