@@ -58,11 +58,15 @@ class ActionsFactory {
 	
 	def buildActionFor(command, time) {
 		switch(command) {
-			case 'f': return new EngineMoveAction(engine: engine, time: time, movement: 'fordward')
-			case 'b': return new EngineMoveAction(engine: engine, time: time, movement: 'backward')
-			case 'l': return new EngineMoveAction(engine: engine, time: time, movement: 'right')
-			case 'r': return new EngineMoveAction(engine: engine, time: time, movement: 'left')
+			case 'f': return createEngineMovement('fordward', time)
+			case 'b': return createEngineMovement('backward', time)
+			case 'l': return createEngineMovement('right', time)
+			case 'r': return createEngineMovement('left', time)
 		}
+	}
+
+	private createEngineMovement(movement, time) {
+		new EngineMoveAction(engine: engine, time: time, movement: movement)
 	}
 
 }
