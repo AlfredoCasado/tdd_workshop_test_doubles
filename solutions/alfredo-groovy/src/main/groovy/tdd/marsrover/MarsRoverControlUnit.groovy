@@ -11,15 +11,13 @@ interface Engine {
 
 class MarsRoverControlUnit {
 
+	def commandProcessor = new CommandProcessor()
 	def engine
 
-	def move(commands) {
-		def commandProcessor = new CommandProcessor(commands: commands)
-		
-		commandProcessor.forEachAction { actionToExcecuteOn ->
-			actionToExcecuteOn(engine)
+	def move(theCommands) {
+		commandProcessor.actionsToExecute(theCommands) { action ->
+			action(engine)
 		}
-
 	}
 
 }
@@ -27,9 +25,8 @@ class MarsRoverControlUnit {
 class CommandProcessor {
 
 	def actionsFactory = new ActionsFactory()
-	def commands
 
-	def forEachAction(function) {
+	def actionsToExecute(commands, function) {
 
 		def last_command = commands[0]
 		def time = 0
@@ -46,7 +43,6 @@ class CommandProcessor {
 		function actionsFactory.buildActionFor(last_command, time)
 	}
 
-	
 }
 
 class ActionsFactory {
