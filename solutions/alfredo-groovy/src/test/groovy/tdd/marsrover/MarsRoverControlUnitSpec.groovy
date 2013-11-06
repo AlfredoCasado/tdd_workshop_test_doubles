@@ -64,7 +64,7 @@ class MarsRoverControlUnitSpec extends Specification {
 
 	def "can return the positions where new life forms are detected!"() {
 		given: 
-			def position1 = [:]
+			def position1 = ['example-position']
 			lifeDetectorStub.detect() >> true
 			positionSystemStub.currentPosition() >> position1 
 

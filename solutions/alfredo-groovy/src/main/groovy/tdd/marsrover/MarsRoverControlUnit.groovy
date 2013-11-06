@@ -14,19 +14,35 @@ interface Engine {
 class MarsRoverControlUnit {
 
 	def static createWith(engine, lifeDetector, positionSystem) {
+		
 		new MarsRoverControlUnit(
+			
 			commandProcessor: new CommandProcessor(
-				actionsFactory: new ActionsFactory(engine: engine)
+				
+				actionsFactory: new ActionsFactory(
+					engine: engine,
+					positionSystem: positionSystem,
+					lifeDetector: lifeDetector
+				)
+
 			)
 		)
+	
 	}
 	
 	def commandProcessor
 	
 	def move(theCommands) {
+		def detectedsLifeForms = []
+		
 		commandProcessor.actionsToExecute(theCommands) { action ->
-			action.execute()
+			def positionOfLifeForm = action.execute()
+			
+			if (positionOfLifeForm) 
+				detectedsLifeForms << positionOfLifeForm
 		}
+
+		return detectedsLifeForms
 	}
 
 }
@@ -57,6 +73,8 @@ class CommandProcessor {
 class ActionsFactory {
 
 	def engine
+	def lifeDetector
+	def positionSystem
 	
 	def buildActionFor(command, time) {
 		switch(command) {
@@ -64,6 +82,7 @@ class ActionsFactory {
 			case 'b': return createEngineMovement('backward', time)
 			case 'l': return createEngineMovement('right', time)
 			case 'r': return createEngineMovement('left', time)
+			case 'c': return new LifeDetectionAction(positionSystem: positionSystem, lifeDetector: lifeDetector)
 			default: throw new RuntimeException("no action associated with command: $command")
 		}
 	}
@@ -72,6 +91,15 @@ class ActionsFactory {
 		new EngineMoveAction(engine: engine, time: time, movement: movement)
 	}
 
+}
+
+class LifeDetectionAction {
+	def lifeDetector, positionSystem
+
+	def execute() {
+		lifeDetector.detect()
+		positionSystem.currentPosition()
+	}
 }
 
 class EngineMoveAction {
