@@ -1,5 +1,7 @@
 package tdd.marsrover
 
+interface LifeDetector { def detect() }
+interface PositionSystem {def currentPosition() }
 interface Engine {
     
     def left(time)
@@ -11,7 +13,7 @@ interface Engine {
 
 class MarsRoverControlUnit {
 
-	def static createWith(engine) {
+	def static createWith(engine, lifeDetector, positionSystem) {
 		new MarsRoverControlUnit(
 			commandProcessor: new CommandProcessor(
 				actionsFactory: new ActionsFactory(engine: engine)
