@@ -44,6 +44,7 @@ class CommandProcessor {
 			} 
 			
 			time++
+			last_command = command
 		}
 
 		function actionsFactory.buildActionFor(last_command, time)
