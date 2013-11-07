@@ -57,9 +57,7 @@ class CommandProcessor {
 
 		commands.each { command ->
 
-			if (notAMove(command)) {
-				function actionsFactory.buildActionFor(command)
-			} 
+			if (notAMove(command)) function actionsFactory.buildActionFor(command)
 			
 			if (command != last_command) {
 				function actionsFactory.buildActionFor(last_command,time)		
