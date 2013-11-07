@@ -9,6 +9,11 @@ class MarsRoverControlUnitSpec extends Specification {
 	def positionSystemStub = Mock(PositionSystem)
 
 	def marsRover = MarsRoverControlUnit.createWith(engineSpy, lifeDetectorStub, positionSystemStub)
+	
+	def marsRover = aMarsRover().withEngine(engineSpy)
+								.withLifeDetector(lifeDetectorStub)
+								.withPositionSystem(positionSystemStub)
+								.build()
 
 	@Unroll
 	def "can move in direction specified by command #command once"() {

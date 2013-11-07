@@ -2,23 +2,6 @@ package tdd.marsrover
 
 class MarsRoverControlUnit {
 
-	def static createWith(engine, lifeDetector, positionSystem) {
-		
-		new MarsRoverControlUnit(
-			
-			commandProcessor: new CommandProcessor(
-				
-				actionsFactory: new ActionsFactory(
-					engine: engine,
-					positionSystem: positionSystem,
-					lifeDetector: lifeDetector
-				)
-
-			)
-		)
-	
-	}
-	
 	def commandProcessor
 	
 	def move(theCommands) {
