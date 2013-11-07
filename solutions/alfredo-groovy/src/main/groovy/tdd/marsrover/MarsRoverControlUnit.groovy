@@ -56,6 +56,11 @@ class CommandProcessor {
 		def last_command = commands[0], time = 0
 
 		commands.each { command ->
+			if (command == 'c') {
+				function actionsFactory.buildActionFor(command, time)
+				time = 0
+			}
+
 			if (command != last_command) {
 				function actionsFactory.buildActionFor(last_command, time)
 				time = 0
@@ -65,7 +70,7 @@ class CommandProcessor {
 			last_command = command
 		}
 
-		function actionsFactory.buildActionFor(last_command, time)
+		if (last_command != 'c') function actionsFactory.buildActionFor(last_command, time)
 	}
 
 }
@@ -97,8 +102,7 @@ class LifeDetectionAction {
 	def lifeDetector, positionSystem
 
 	def execute() {
-		lifeDetector.detect()
-		positionSystem.currentPosition()
+		if (lifeDetector.detect()) positionSystem.currentPosition()
 	}
 }
 
