@@ -74,12 +74,7 @@ class MarsRoverControlUnitSpec extends Specification {
 	}
 
 	def "only return positions when found life forms"() {
-		given: 
-			def position1 = 'position1'
-			def position2 = 'position2'
-			
-			lifeDetectorStub.detect() >> false
-			
+		given: lifeDetectorStub.detect() >> false
 		expect: marsRover.move("c") == []
 	}	
 
