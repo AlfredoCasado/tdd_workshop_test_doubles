@@ -56,22 +56,25 @@ class CommandProcessor {
 		def last_command = commands[0], time = 0
 
 		commands.each { command ->
-			if (command == 'c') {
-				function actionsFactory.buildActionFor(command, time)
-				time = 0
-			}
 
-			if (command != last_command) {
-				function actionsFactory.buildActionFor(last_command, time)
-				time = 0
+			if (notAMove(command)) {
+				function actionsFactory.buildActionFor(command)
 			} 
+			
+			if (command != last_command) {
+				function actionsFactory.buildActionFor(last_command,time)		
+				time=0
+			}
 			
 			time++
 			last_command = command
 		}
 
-		if (last_command != 'c') function actionsFactory.buildActionFor(last_command, time)
+		if (isAMove(last_command)) function actionsFactory.buildActionFor(last_command, time)
 	}
+
+	private notAMove(command) { command == 'c' }
+	private isAMove(command) {command != 'c'}
 
 }
 
@@ -81,7 +84,7 @@ class ActionsFactory {
 	def lifeDetector
 	def positionSystem
 	
-	def buildActionFor(command, time) {
+	def buildActionFor(command, time=0) {
 		switch(command) {
 			case 'f': return createEngineMovement('fordward', time)
 			case 'b': return createEngineMovement('backward', time)

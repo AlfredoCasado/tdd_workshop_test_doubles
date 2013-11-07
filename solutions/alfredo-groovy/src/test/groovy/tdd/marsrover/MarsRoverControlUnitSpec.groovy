@@ -91,7 +91,7 @@ class MarsRoverControlUnitSpec extends Specification {
 			lifeDetectorStub.detect() >>> [false, true, false, true]
 			positionSystemStub.currentPosition() >>> [position1, position2]
 
-		expect: marsRover.move("cc") == [position1]
+		expect: marsRover.move("cccc") == [position1, position2]
 	}
 
 
