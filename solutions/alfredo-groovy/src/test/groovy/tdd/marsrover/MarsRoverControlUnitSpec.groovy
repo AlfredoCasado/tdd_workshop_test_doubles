@@ -2,13 +2,13 @@ package tdd.marsrover
 
 import spock.lang.*
 
+import static tdd.marsrover.MarsRoverBuilder.aMarsRover;
+
 class MarsRoverControlUnitSpec extends Specification {
 
 	def engineSpy = Mock(Engine)
 	def lifeDetectorStub = Mock(LifeDetector)
 	def positionSystemStub = Mock(PositionSystem)
-
-	def marsRover = MarsRoverControlUnit.createWith(engineSpy, lifeDetectorStub, positionSystemStub)
 	
 	def marsRover = aMarsRover().withEngine(engineSpy)
 								.withLifeDetector(lifeDetectorStub)
